@@ -20,8 +20,8 @@ require 'sensu-plugin'
 require 'sensu-plugins-json-mutator/mutator'
 
 class JSONMutator < Sensu::Mutator
-  GRAPHITE = /([\w\.]+)\s(.+).*/  # sample.key 42.13 1462521982
-  STATSD   = /([\w\.]+):(.*)\|.*/ # sample.key:42.13|kv
+  GRAPHITE = /([^\s]+)\s(.+).*/   # sample.key 42.13 1462521982
+  STATSD   = /([^\:]+)\:(.*)\|.*/ # sample.key:42.13|kv
 
   def mutate
     lines = @event['check']['output'].lines
